@@ -10,7 +10,7 @@
 export default {
   data: () => ({}),
   components: {
-    Resume: () => import('./components/Resume'),
+    Resume: () => import('@components/Resume'),
   },
 };
 </script>

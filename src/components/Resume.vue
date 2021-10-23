@@ -24,7 +24,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  metaInfo: {
+    title: 'Resume',
+  },
+};
 </script>
 
 <style scoped></style>
