@@ -20,7 +20,14 @@ export default {
         <strong>{{ name }}</strong>
       </v-row>
       <v-row justify="center" no-gutters>
-        <v-col v-for="(item, index) in contactOptions" :key="index">
+        <v-col
+          v-for="(item, i) in contactOptions"
+          :key="i"
+          cols="12"
+          lg="3"
+          md="3"
+          sm="6"
+        >
           <v-icon small left>{{ item.icon }}</v-icon>
           <span>{{ item.text }}</span>
         </v-col>

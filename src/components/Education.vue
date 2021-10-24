@@ -19,7 +19,7 @@ export default {
       <v-row no-gutters>
         <strong>{{ title }}</strong>
       </v-row>
-      <v-row no-gutters v-for="(school, index) in schoolList" :key="index">
+      <v-row no-gutters v-for="(school, i) in schoolList" :key="i">
         <span>{{ school.title }}: {{ school.text }}</span>
       </v-row>
     </v-col>

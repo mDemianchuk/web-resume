@@ -19,7 +19,7 @@ export default {
       <v-row no-gutters>
         <strong>{{ title }}</strong>
       </v-row>
-      <v-row no-gutters v-for="(project, index) in projectList" :key="index">
+      <v-row no-gutters v-for="(project, i) in projectList" :key="i">
         <span>{{ project.title }}: {{ project.text }}</span>
       </v-row>
     </v-col>
