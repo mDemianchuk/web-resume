@@ -3,6 +3,7 @@ import App from './App.vue';
 import VueMeta from 'vue-meta';
 import vuetify from './plugins/vuetify';
 import router from './router';
+import './layouts';
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production';
 

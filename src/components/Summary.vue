@@ -6,9 +6,6 @@ export default {
       default: '',
     },
   },
-  components: {
-    ResumeSection: () => import('@components/ResumeSection'),
-  },
   data: () => ({
     title: 'Summary',
   }),
