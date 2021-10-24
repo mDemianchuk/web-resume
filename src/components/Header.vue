@@ -17,7 +17,7 @@ export default {
   <v-row class="text-center">
     <v-col>
       <v-row justify="center" no-gutters>
-        <strong>{{ name }}</strong>
+        <h1>{{ name }}</h1>
       </v-row>
       <v-row justify="center" no-gutters>
         <v-col

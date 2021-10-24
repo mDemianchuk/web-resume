@@ -17,7 +17,7 @@ export default {
   <v-row>
     <v-col>
       <v-row no-gutters>
-        <strong>{{ title }}</strong>
+        <h1>{{ title }}</h1>
       </v-row>
       <v-row no-gutters>
         <span>{{ text }}</span>

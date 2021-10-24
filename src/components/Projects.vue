@@ -17,10 +17,16 @@ export default {
   <v-row>
     <v-col>
       <v-row no-gutters>
-        <strong>{{ title }}</strong>
+        <h1>{{ title }}</h1>
       </v-row>
-      <v-row no-gutters v-for="(project, i) in projectList" :key="i">
-        <span>{{ project.title }}: {{ project.text }}</span>
+      <v-row v-for="(project, i) in projectList" :key="i">
+        <v-col>
+          <strong>{{ project.name }}</strong>
+          <br />
+          <span>{{ project.description }}</span>
+          <br />
+          <router-link to="">Link</router-link>
+        </v-col>
       </v-row>
     </v-col>
   </v-row>

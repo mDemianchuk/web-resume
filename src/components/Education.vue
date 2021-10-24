@@ -17,10 +17,14 @@ export default {
   <v-row>
     <v-col>
       <v-row no-gutters>
-        <strong>{{ title }}</strong>
+        <h1>{{ title }}</h1>
       </v-row>
-      <v-row no-gutters v-for="(school, i) in schoolList" :key="i">
-        <span>{{ school.title }}: {{ school.text }}</span>
+      <v-row v-for="(school, i) in schoolList" :key="i">
+        <v-col>
+          <strong>{{ school.name }}</strong>
+          <br />
+          <span>{{ school.text }}</span>
+        </v-col>
       </v-row>
     </v-col>
   </v-row>

@@ -17,7 +17,7 @@ export default {
   <v-row>
     <v-col>
       <v-row no-gutters>
-        <strong>{{ title }}</strong>
+        <h1>{{ title }}</h1>
       </v-row>
       <v-timeline>
         <v-timeline-item
@@ -25,7 +25,7 @@ export default {
           :key="i"
           small
         >
-          <template v-slot:opposite>
+          <template #opposite>
             <h2>{{ experience.dates }}</h2>
             <h2 :class="`headline font-weight-light mb-4`">
               {{ experience.title }}: {{ experience.companyName }}
@@ -33,7 +33,7 @@ export default {
           </template>
           <div>
             <p v-for="i in 4" :key="i">
-              Lorem ipsum dolor sit amet, no nam oblique veritus. Commune
+              - Lorem ipsum dolor sit amet, no nam oblique veritus. Commune
               scaevola imperdiet nec ut, sed euismod convenire principes at. Est
               et nobis iisque percipit, an vim zril disputando voluptatibus, vix
               an salutandi sententiae.
