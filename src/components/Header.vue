@@ -18,15 +18,8 @@ export default {
     <v-row justify="center" no-gutters>
       <h1>{{ name }}</h1>
     </v-row>
-    <v-row>
-      <v-col
-        v-for="(item, i) in contactOptions"
-        :key="i"
-        cols="12"
-        lg="3"
-        md="3"
-        sm="6"
-      >
+    <v-row justify="center">
+      <v-col v-for="(item, i) in contactOptions" :key="i" cols="auto">
         <v-icon left class="headingText">{{ item.icon }}</v-icon>
         <span>{{ item.text }}</span>
       </v-col>
