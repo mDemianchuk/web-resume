@@ -5,9 +5,9 @@ export default {
       type: String,
       default: '',
     },
-    text: {
-      type: String,
-      default: '',
+    experienceList: {
+      type: Array,
+      default: () => [],
     },
   },
 };
@@ -19,8 +19,12 @@ export default {
       <v-row no-gutters>
         <strong>{{ title }}</strong>
       </v-row>
-      <v-row no-gutters>
-        <span>{{ text }}</span>
+      <v-row
+        no-gutters
+        v-for="(experience, index) in experienceList"
+        :key="index"
+      >
+        <span>{{ experience.title }}: {{ experience.text }}</span>
       </v-row>
     </v-col>
   </v-row>

@@ -5,9 +5,9 @@ export default {
       type: String,
       default: '',
     },
-    text: {
-      type: String,
-      default: '',
+    schoolList: {
+      type: Array,
+      default: () => [],
     },
   },
 };
@@ -19,8 +19,8 @@ export default {
       <v-row no-gutters>
         <strong>{{ title }}</strong>
       </v-row>
-      <v-row no-gutters>
-        <span>{{ text }}</span>
+      <v-row no-gutters v-for="(school, index) in schoolList" :key="index">
+        <span>{{ school.title }}: {{ school.text }}</span>
       </v-row>
     </v-col>
   </v-row>

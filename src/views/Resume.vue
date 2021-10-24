@@ -9,7 +9,6 @@ export default {
     Header: () => import('@components/Header'),
     Summary: () => import('@components/Summary'),
     Experience: () => import('@components/Experience'),
-    OtherExperience: () => import('@components/OtherExperience'),
     Projects: () => import('@components/Projects'),
     Education: () => import('@components/Education'),
   },
@@ -22,11 +21,14 @@ export default {
 <template>
   <v-container>
     <Header :name="resume.name" :contact-options="resume.contactOptions" />
-    <Summary title="Summary" text="Summary text" />
-    <Experience title="Experience" text="Experience text" />
-    <OtherExperience title="Other Experience" text="Other Experience text" />
-    <Projects title="Projects" text="Projects text" />
-    <Education title="Education" text="Education text" />
+    <Summary title="Summary" :text="resume.summary" />
+    <Experience title="Experience" :experience-list="resume.experienceList" />
+    <Experience
+      title="Other Experience"
+      :experience-list="resume.experienceList"
+    />
+    <Projects title="Projects" :project-list="resume.projectList" />
+    <Education title="Education" :school-list="resume.schoolList" />
   </v-container>
 </template>
 

@@ -5,9 +5,9 @@ export default {
       type: String,
       default: '',
     },
-    text: {
-      type: String,
-      default: '',
+    projectList: {
+      type: Array,
+      default: () => [],
     },
   },
 };
@@ -19,8 +19,8 @@ export default {
       <v-row no-gutters>
         <strong>{{ title }}</strong>
       </v-row>
-      <v-row no-gutters>
-        <span>{{ text }}</span>
+      <v-row no-gutters v-for="(project, index) in projectList" :key="index">
+        <span>{{ project.title }}: {{ project.text }}</span>
       </v-row>
     </v-col>
   </v-row>
