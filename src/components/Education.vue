@@ -1,23 +1,22 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      default: '',
-    },
     schoolList: {
       type: Array,
       default: () => [],
     },
   },
+  components: {
+    ResumeSection: () => import('@components/ResumeSection'),
+  },
+  data: () => ({
+    title: 'Education',
+  }),
 };
 </script>
 
 <template>
-  <v-container>
-    <v-row no-gutters>
-      <h1>{{ title }}</h1>
-    </v-row>
+  <ResumeSection :title="title">
     <v-row v-for="(school, i) in schoolList" :key="i">
       <v-col>
         <strong>{{ school.name }}</strong>
@@ -25,5 +24,5 @@ export default {
         <span>{{ school.text }}</span>
       </v-col>
     </v-row>
-  </v-container>
+  </ResumeSection>
 </template>

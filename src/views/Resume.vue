@@ -21,10 +21,10 @@ export default {
 <template>
   <v-container>
     <Header :name="resume.name" :contact-options="resume.contactOptions" />
-    <Summary title="Summary" :text="resume.summary" />
-    <Experience title="Experience" :experience-list="resume.experienceList" />
-    <Projects title="Projects" :project-list="resume.projectList" />
-    <Education title="Education" :school-list="resume.schoolList" />
+    <Summary :text="resume.summary" />
+    <Experience :experience-list="resume.experienceList" />
+    <Projects :project-list="resume.projectList" />
+    <Education :school-list="resume.schoolList" />
   </v-container>
 </template>
 

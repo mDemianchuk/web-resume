@@ -1,23 +1,22 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      default: '',
-    },
     experienceList: {
       type: Array,
       default: () => [],
     },
   },
+  components: {
+    ResumeSection: () => import('@components/ResumeSection'),
+  },
+  data: () => ({
+    title: 'Experience',
+  }),
 };
 </script>
 
 <template>
-  <v-container>
-    <v-row no-gutters>
-      <h1>{{ title }}</h1>
-    </v-row>
+  <ResumeSection :title="title">
     <v-timeline>
       <v-timeline-item
         v-for="(experience, i) in experienceList"
@@ -44,5 +43,5 @@ export default {
         </div>
       </v-timeline-item>
     </v-timeline>
-  </v-container>
+  </ResumeSection>
 </template>

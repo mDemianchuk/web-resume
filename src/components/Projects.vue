@@ -1,23 +1,22 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      default: '',
-    },
     projectList: {
       type: Array,
       default: () => [],
     },
   },
+  components: {
+    ResumeSection: () => import('@components/ResumeSection'),
+  },
+  data: () => ({
+    title: 'Projects',
+  }),
 };
 </script>
 
 <template>
-  <v-container>
-    <v-row no-gutters>
-      <h1>{{ title }}</h1>
-    </v-row>
+  <ResumeSection :title="title">
     <v-row v-for="(project, i) in projectList" :key="i">
       <v-col>
         <strong>{{ project.name }}</strong>
@@ -27,5 +26,5 @@ export default {
         <router-link to="" class="linkText">Link</router-link>
       </v-col>
     </v-row>
-  </v-container>
+  </ResumeSection>
 </template>

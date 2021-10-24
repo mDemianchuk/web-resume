@@ -1,27 +1,26 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      default: '',
-    },
     text: {
       type: String,
       default: '',
     },
   },
+  components: {
+    ResumeSection: () => import('@components/ResumeSection'),
+  },
+  data: () => ({
+    title: 'Summary',
+  }),
 };
 </script>
 
 <template>
-  <v-container>
-    <v-row no-gutters>
-      <h1>{{ title }}</h1>
-    </v-row>
+  <ResumeSection :title="title">
     <v-row>
       <v-col>
         <span>{{ text }}</span>
       </v-col>
     </v-row>
-  </v-container>
+  </ResumeSection>
 </template>
