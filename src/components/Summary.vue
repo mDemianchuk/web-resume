@@ -14,14 +14,14 @@ export default {
 </script>
 
 <template>
-  <v-row>
-    <v-col>
-      <v-row no-gutters>
-        <h1>{{ title }}</h1>
-      </v-row>
-      <v-row no-gutters>
+  <v-container>
+    <v-row no-gutters>
+      <h1>{{ title }}</h1>
+    </v-row>
+    <v-row>
+      <v-col>
         <span>{{ text }}</span>
-      </v-row>
-    </v-col>
-  </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
