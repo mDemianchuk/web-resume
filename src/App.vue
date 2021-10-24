@@ -30,6 +30,5 @@ body,
 
 .linkText {
   color: $color-link-text !important;
-  font-weight: 500;
 }
 </style>
