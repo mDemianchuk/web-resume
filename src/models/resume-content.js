@@ -3,20 +3,23 @@ export const RESUME_CONTENT = {
   title: 'Lorem Ipsum Dolor',
   contactOptions: [
     {
-      text: '123 456 8900',
+      text: '123-456-7890',
       icon: 'mdi-phone',
+      url: 'tel:123-456-7890',
     },
     {
       text: 'test@email.com',
       icon: 'mdi-at',
     },
     {
-      text: 'github.com',
+      text: 'github',
       icon: 'mdi-github',
+      url: 'https://github.com/',
     },
     {
-      text: 'linkedin.com',
+      text: 'linkedin',
       icon: 'mdi-linkedin',
+      url: '',
     },
   ],
   summary:

@@ -22,13 +22,15 @@ export default {
     <v-row justify="center" no-gutters>
       <h1>{{ name }}</h1>
     </v-row>
-    <v-row justify="center" class="linkText" no-gutters>
+    <v-row justify="center" class="colorText" no-gutters>
       <h2>{{ title }}</h2>
     </v-row>
     <v-row justify="center">
       <v-col v-for="(item, i) in contactOptions" :key="i" cols="auto">
-        <v-icon left class="headingText">{{ item.icon }}</v-icon>
-        <span>{{ item.text }}</span>
+        <a :href="item.url">
+          <v-icon left class="headingText">{{ item.icon }}</v-icon>
+          {{ item.text }}
+        </a>
       </v-col>
     </v-row>
   </v-container>
