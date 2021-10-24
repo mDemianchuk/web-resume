@@ -1,5 +1,6 @@
 export const RESUME_CONTENT = {
   name: 'Lorem Ipsum',
+  title: 'Lorem Ipsum Dolor',
   contactOptions: [
     {
       text: '123 456 8900',

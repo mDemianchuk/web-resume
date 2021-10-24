@@ -5,6 +5,10 @@ export default {
       type: String,
       default: '',
     },
+    title: {
+      type: String,
+      default: '',
+    },
     contactOptions: {
       type: Array,
       default: () => [],
@@ -17,6 +21,9 @@ export default {
   <v-container class="text-center">
     <v-row justify="center" no-gutters>
       <h1>{{ name }}</h1>
+    </v-row>
+    <v-row justify="center" class="linkText" no-gutters>
+      <h2>{{ title }}</h2>
     </v-row>
     <v-row justify="center">
       <v-col v-for="(item, i) in contactOptions" :key="i" cols="auto">
