@@ -8,6 +8,7 @@ export default {
   },
   data: () => ({
     title: 'Education',
+    prefix: '-',
   }),
 };
 </script>
@@ -24,7 +25,11 @@ export default {
           <v-spacer />
           <h4 v-text="school.dates" class="lightText" />
         </v-row>
-        <p v-text="school.text" />
+        <p
+          v-for="(achievement, i) in school.achievements"
+          :key="i"
+          v-text="`${prefix} ${achievement}`"
+        />
       </v-col>
     </v-row>
   </ResumeSection>
