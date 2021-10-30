@@ -1,5 +1,5 @@
 <script>
-import { RESUME_CONTENT } from '@models/resume-content';
+import { getResumeContent } from '@utils/resume-parser';
 
 export default {
   metaInfo: {
@@ -13,7 +13,7 @@ export default {
     Education: () => import('@components/Education'),
   },
   data: () => ({
-    resume: RESUME_CONTENT,
+    resume: getResumeContent(),
   }),
 };
 </script>
