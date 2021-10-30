@@ -8,6 +8,7 @@ export default {
   },
   data: () => ({
     title: 'Experience',
+    prefix: '-',
   }),
   computed: {
     isNarrowViewpoint() {
@@ -37,7 +38,7 @@ export default {
           <h3 v-text="experience.dates" class="secondaryText" />
         </template>
         <div>
-          <v-row no-gutters align="baseline">
+          <v-row no-gutters align="baseline" class="mb-4">
             <v-col cols="auto">
               <h3 v-text="experience.title" class="colorText" />
               <h4 v-text="experience.companyName" />
@@ -49,15 +50,12 @@ export default {
               class="lightText"
             />
           </v-row>
-          <p v-for="i in 4" :key="i">
-            - Lorem ipsum dolor sit amet, no nam oblique veritus. Commune
-            scaevola imperdiet nec ut, sed euismod convenire principes at. Est
-            et nobis iisque percipit, an vim zril disputando voluptatibus, vix
-            an salutandi sententiae.
-          </p>
-          <p>
-            <i>Lorem ipsum dolor sit amet, no nam oblique veritus.</i>
-          </p>
+          <p
+            v-for="(duty, i) in experience.duties"
+            :key="i"
+            v-text="`${prefix} ${duty}`"
+          />
+          <p v-text="experience.footer" class="font-italic" />
         </div>
       </v-timeline-item>
     </v-timeline>
