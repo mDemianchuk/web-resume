@@ -17,15 +17,15 @@ export default {
     <v-row v-for="(project, i) in projectList" :key="i">
       <v-col>
         <v-row no-gutters>
-          <strong>{{ project.name }}</strong>
+          <h4 v-text="project.name" class="mb-4" />
         </v-row>
         <v-row no-gutters>
-          <span>{{ project.description }}</span>
+          <span v-text="project.description" />
         </v-row>
         <v-row no-gutters justify="end">
-          <a href="">
+          <a :href="project.link.url">
             <v-icon class="headingText" left small>mdi-link-variant</v-icon>
-            <span v-text="'Project Site'" />
+            <span v-text="project.link.text" />
           </a>
         </v-row>
       </v-col>
