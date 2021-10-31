@@ -8,6 +8,8 @@ cache:
     - .cache
 script:
   - yarn build
+env:
+  - VUE_APP_RESUME_CONTENT_STRING: $RESUME_CONTENT
 
 deploy:
   provider: pages
