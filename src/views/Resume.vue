@@ -11,6 +11,7 @@ export default {
     Experience: () => import('@components/Experience'),
     Projects: () => import('@components/Projects'),
     Education: () => import('@components/Education'),
+    Certification: () => import('@components/Certification'),
   },
   data: () => ({
     resume: getResumeContent(),
@@ -29,6 +30,8 @@ export default {
     <Experience :experience-list="resume.experienceList" />
     <Projects :project-list="resume.projectList" />
     <Education :school-list="resume.schoolList" />
+    <Education :school-list="resume.schoolList" />
+    <Certification :certification-list="resume.certificationList" />
   </v-container>
 </template>
 

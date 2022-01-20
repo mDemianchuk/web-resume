@@ -106,5 +106,11 @@
         "Commune scaevola imperdiet nec ut, sed euismod convenire principes at."
       ]
     }
+  ],
+  "certificationList": [
+    {
+      "name": "Lorem Ipsum",
+      "url": "https://github.com/"
+    }
   ]
 }
