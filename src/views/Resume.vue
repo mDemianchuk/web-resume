@@ -30,7 +30,6 @@ export default {
     <Experience :experience-list="resume.experienceList" />
     <Projects :project-list="resume.projectList" />
     <Education :school-list="resume.schoolList" />
-    <Education :school-list="resume.schoolList" />
     <Certification :certification-list="resume.certificationList" />
   </v-container>
 </template>
