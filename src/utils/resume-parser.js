@@ -1,5 +1,5 @@
 export function getResumeContent() {
-  return parseResumeString() || require('./resume.json');
+  return parseResumeString() || require('@assets/resume.json');
 }
 
 function parseResumeString() {
