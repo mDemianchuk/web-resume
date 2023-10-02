@@ -24,13 +24,13 @@ jobs:
         terraform_version: 1.5.0
 
     - name: Terraform Init
-      run: cd terraform/ && terraform init
+      run: cd terraform/ && terraform init && pwd
 
     - name: Terraform Validate
-      run: terraform validate
+      run: pwd && terraform validate
 
     - name: Terraform Plan
-      run: terraform plan
+      run: pwd && terraform plan
     
     - name: Terraform Apply
       run: terraform apply -auto-approve
