@@ -1,0 +1,52 @@
+name: Build and Deploy Application
+
+on:
+  push:
+
+jobs:
+  validate:
+    name: Validate and Deploy Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        cli_config_credentials_token: ${{ env.TF_API_TOKEN }}
+        terraform_version: 1.5.0
+
+    - name: Terraform Init
+      run: 
+        - cd terraform/
+        - terraform init
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      run: terraform plan
+    
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+    
+    - name: Install dependencies
+      run: yarn install
+    
+    - name: Build
+      run: yarn build
