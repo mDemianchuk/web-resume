@@ -33,8 +33,8 @@ data "aws_iam_policy_document" "bucket_policy" {
 }
 
 resource "aws_s3_bucket_policy" "web_resume_app" {
-  bucket     = aws_s3_bucket.web_resume_app.id
-  policy     = data.aws_iam_policy_document.bucket_policy.json
+  bucket = aws_s3_bucket.web_resume_app.id
+  policy = data.aws_iam_policy_document.bucket_policy.json
 }
 
 resource "aws_s3_bucket_public_access_block" "web_resume_app" {
