@@ -30,7 +30,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist/**
+        path: dist
 
   validate-and-deploy:
     needs: build
@@ -53,7 +53,7 @@ jobs:
         path: dist
 
     - name: DEBUG
-      run: ls -la
+      run: ls -la && cd dist && ls -la
 
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
