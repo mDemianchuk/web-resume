@@ -5,7 +5,6 @@ locals {
 
 resource "aws_s3_bucket" "web_resume_app" {
   bucket        = var.source_bucket_name
-  force_destroy = true
 }
 
 resource "aws_s3_bucket_website_configuration" "web_resume_app" {
