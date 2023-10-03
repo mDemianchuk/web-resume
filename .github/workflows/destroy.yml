@@ -25,7 +25,9 @@ jobs:
           terraform_version: 1.5.0
 
       - name: Terraform Init
-        run: cd terraform/ && terraform init
+        run: terraform init
+        working-directory: ./terraform
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
+        working-directory: ./terraform
