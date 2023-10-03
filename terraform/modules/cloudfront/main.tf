@@ -28,7 +28,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   logging_config {
     include_cookies = false
     bucket          = var.log_bucket_name
-    prefix          = "/"
+    prefix          = "/logs"
   }
   price_class = "PriceClass_100"
   restrictions {
