@@ -1,5 +1,5 @@
 locals {
-  source_base_path = "../${path.root}/dist"
+  source_base_path = "${path.root}/dist"
   source_s3_prefix = "web-resume"
 }
 
