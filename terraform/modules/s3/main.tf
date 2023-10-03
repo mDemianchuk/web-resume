@@ -42,3 +42,9 @@ resource "aws_s3_bucket_public_access_block" "web_resume_app" {
   block_public_acls   = true
   block_public_policy = true
 }
+
+resource "aws_s3_bucket_public_access_block" "web_resume_app_logs" {
+  bucket              = aws_s3_bucket.web_resume_app_logs.id
+  block_public_acls   = true
+  block_public_policy = true
+}

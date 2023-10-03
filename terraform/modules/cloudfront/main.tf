@@ -25,11 +25,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     default_ttl            = local.one_hour_in_seconds
     max_ttl                = local.one_day_in_seconds
   }
-  # logging_config {
-  #   include_cookies = false
-  #   bucket          = var.log_bucket_name
-  #   prefix          = "/logs"
-  # }
+  logging_config {
+    include_cookies = false
+    bucket          = var.log_bucket_name
+  }
   price_class = "PriceClass_100"
   restrictions {
     geo_restriction {
