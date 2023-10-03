@@ -8,6 +8,14 @@ resource "aws_s3_bucket" "web_resume_app" {
   force_destroy = true
 }
 
+resource "aws_s3_bucket_website_configuration" "web_resume_app" {
+  bucket = aws_s3_bucket.web_resume_app.id
+
+  index_document {
+    suffix = "index.html"
+  }
+}
+
 data "aws_iam_policy_document" "bucket_policy" {
   statement {
     actions   = ["s3:GetObject"]
