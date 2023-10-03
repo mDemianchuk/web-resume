@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  validate:
+  validate-and-deploy:
     name: Validate and Deploy Terraform
     runs-on: ubuntu-latest
     env:

@@ -3,10 +3,15 @@ locals {
   one_day_in_seconds  = local.one_hour_in_seconds * 24
 }
 
+resource "aws_cloudfront_origin_access_identity" "oai" {}
+
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name = var.domain_name
     origin_id   = var.source_bucket_name
+    s3_origin_config {
+      origin_access_identity = aws_cloudfront_origin_access_identity.oai.cloudfront_access_identity_path
+    }
   }
   enabled             = true
   default_root_object = "index.html"
