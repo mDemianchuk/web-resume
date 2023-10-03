@@ -24,13 +24,13 @@ jobs:
       run: yarn build
     
     - name: DEBUG
-      run: ls -la
+      run: ls -la && cd dist && ls -la
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist
+        path: dist/**
 
   validate-and-deploy:
     needs: build
@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist
+        path: dist/**
 
     - name: DEBUG
       run: ls -la
