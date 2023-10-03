@@ -1,3 +1,8 @@
+locals {
+  source_base_path = "../${path.root}/dist"
+  source_s3_prefix = "web-resume"
+}
+
 resource "aws_s3_bucket" "web_resume_app" {
   bucket        = var.source_bucket_name
   force_destroy = true
@@ -37,4 +42,13 @@ resource "aws_s3_bucket_public_access_block" "web_resume_app" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
+}
+
+resource "aws_s3_object" "dist" {
+  for_each = fileset("${local.source_base_path}/", "**")
+
+  bucket = aws_s3_bucket.web_resume_app.id
+  key    = "${local.source_s3_prefix}/${each.value}"
+  source = "${local.source_base_path}/${each.value}"
+  etag   = filemd5("${local.source_base_path}/${each.value}")
 }
