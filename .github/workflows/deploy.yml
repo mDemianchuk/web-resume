@@ -30,7 +30,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: dist/
+        path: dist
 
   validate-and-deploy:
     needs: build
@@ -50,6 +50,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
+        path: dist
 
     - name: DEBUG
       run: ls -la
