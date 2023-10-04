@@ -1,6 +1,6 @@
 locals {
   source_base_path = "${path.root}/dist"
-  source_s3_prefix = "web-resume"
+  # source_s3_prefix = "web-resume"
 }
 
 resource "aws_s3_bucket" "web_resume_app" {
@@ -55,7 +55,8 @@ resource "aws_s3_object" "dist" {
   for_each = fileset("${local.source_base_path}/", "**")
 
   bucket = aws_s3_bucket.web_resume_app.id
-  key    = "${local.source_s3_prefix}/${each.value}"
+  # key    = "${local.source_s3_prefix}/${each.value}"
+  key    = each.value
   source = "${local.source_base_path}/${each.value}"
   etag   = filemd5("${local.source_base_path}/${each.value}")
 }

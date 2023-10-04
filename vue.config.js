@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/web-resume/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   transpileDependencies: ['vuetify'],
   configureWebpack: {
     resolve: {
