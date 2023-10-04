@@ -61,7 +61,7 @@ resource "aws_s3_bucket_cors_configuration" "web_resume_app" {
 }
 
 resource "aws_s3_object" "js" {
-  for_each = fileset("${local.source_base_path}/", "**/*.js*")
+  for_each = fileset("${local.source_base_path}/", "**/*.js")
 
   bucket       = aws_s3_bucket.web_resume_app.id
   key          = "${local.source_s3_prefix}/${each.value}"
@@ -71,13 +71,23 @@ resource "aws_s3_object" "js" {
 }
 
 resource "aws_s3_object" "css" {
-  for_each = fileset("${local.source_base_path}/", "**/*.css*")
+  for_each = fileset("${local.source_base_path}/", "**/*.css")
 
   bucket       = aws_s3_bucket.web_resume_app.id
   key          = "${local.source_s3_prefix}/${each.value}"
   source       = "${local.source_base_path}/${each.value}"
   etag         = filemd5("${local.source_base_path}/${each.value}")
   content_type = "text/css"
+}
+
+resource "aws_s3_object" "map" {
+  for_each = fileset("${local.source_base_path}/", "**/*.map")
+
+  bucket       = aws_s3_bucket.web_resume_app.id
+  key          = "${local.source_s3_prefix}/${each.value}"
+  source       = "${local.source_base_path}/${each.value}"
+  etag         = filemd5("${local.source_base_path}/${each.value}")
+  content_type = "application/json"
 }
 
 resource "aws_s3_object" "html" {
