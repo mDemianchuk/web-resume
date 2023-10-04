@@ -1,6 +1,6 @@
 locals {
   source_base_path = "${path.root}/dist"
-  # source_s3_prefix = "web-resume"
+  source_s3_prefix = "web-resume"
 }
 
 resource "aws_s3_bucket" "web_resume_app" {
@@ -51,12 +51,42 @@ resource "aws_s3_bucket_public_access_block" "web_resume_app" {
   restrict_public_buckets = true
 }
 
-resource "aws_s3_object" "dist" {
-  for_each = fileset("${local.source_base_path}/", "**")
+resource "aws_s3_object" "js" {
+  for_each = fileset("${local.source_base_path}/", "**/*.js*")
 
   bucket = aws_s3_bucket.web_resume_app.id
-  # key    = "${local.source_s3_prefix}/${each.value}"
-  key    = each.value
+  key    = "${local.source_s3_prefix}/${each.value}"
   source = "${local.source_base_path}/${each.value}"
   etag   = filemd5("${local.source_base_path}/${each.value}")
+  content_type = "text/javascript"
+}
+
+resource "aws_s3_object" "css" {
+  for_each = fileset("${local.source_base_path}/", "**/*.css*")
+
+  bucket = aws_s3_bucket.web_resume_app.id
+  key    = "${local.source_s3_prefix}/${each.value}"
+  source = "${local.source_base_path}/${each.value}"
+  etag   = filemd5("${local.source_base_path}/${each.value}")
+  content_type = "text/css"
+}
+
+resource "aws_s3_object" "html" {
+  for_each = fileset("${local.source_base_path}/", "**/*.html")
+
+  bucket = aws_s3_bucket.web_resume_app.id
+  key    = "${local.source_s3_prefix}/${each.value}"
+  source = "${local.source_base_path}/${each.value}"
+  etag   = filemd5("${local.source_base_path}/${each.value}")
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "ico" {
+  for_each = fileset("${local.source_base_path}/", "**/*.ico")
+
+  bucket = aws_s3_bucket.web_resume_app.id
+  key    = "${local.source_s3_prefix}/${each.value}"
+  source = "${local.source_base_path}/${each.value}"
+  etag   = filemd5("${local.source_base_path}/${each.value}")
+  content_type = "image/x-icon"
 }
