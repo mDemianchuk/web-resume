@@ -18,19 +18,11 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
   enabled             = true
   default_root_object = "${var.source_s3_prefix}/index.html"
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = aws_s3_bucket.web_resume_app.id
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
+    cache_policy_id        = local.caching_disabled_policy_id
+    allowed_methods        = ["GET", "HEAD", "OPTIONS"]
+    cached_methods         = ["GET", "HEAD", "OPTIONS"]
+    target_origin_id       = aws_s3_bucket.web_resume_app.id
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = local.one_hour_in_seconds
-    max_ttl                = local.one_day_in_seconds
   }
   price_class = "PriceClass_100"
   restrictions {
