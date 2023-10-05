@@ -1,19 +1,19 @@
 locals {
   caching_disabled_policy_id = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
-  use_custom_domain          = var.domain_name != ""
   app_domain_name            = "${var.subdomain_name}.${var.domain_name}"
-  domain_validation_options  = local.use_custom_domain ? aws_acm_certificate.cert[0].domain_validation_options : []
+  has_custom_domain          = var.domain_name != ""
+  domain_validation_options  = local.has_custom_domain ? aws_acm_certificate.cert[0].domain_validation_options : []
 }
 
 data "aws_route53_zone" "web_resume_app" {
-  count = local.use_custom_domain ? 1 : 0
+  count = local.has_custom_domain ? 1 : 0
 
   name         = var.domain_name
   private_zone = false
 }
 
 resource "aws_acm_certificate" "cert" {
-  count = local.use_custom_domain ? 1 : 0
+  count = local.has_custom_domain ? 1 : 0
 
   domain_name       = local.app_domain_name
   validation_method = "DNS"
@@ -37,7 +37,7 @@ resource "aws_route53_record" "cert_cname" {
 }
 
 resource "aws_acm_certificate_validation" "cert_validation" {
-  count = local.use_custom_domain ? 1 : 0
+  count = local.has_custom_domain ? 1 : 0
 
   certificate_arn = aws_acm_certificate.cert[0].arn
 }
@@ -55,7 +55,7 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     }
   }
   enabled             = true
-  aliases             = local.use_custom_domain ? [local.app_domain_name] : []
+  aliases             = local.has_custom_domain ? [local.app_domain_name] : []
   default_root_object = "${var.source_s3_prefix}/index.html"
   default_cache_behavior {
     cache_policy_id        = local.caching_disabled_policy_id
@@ -72,8 +72,8 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     }
   }
   viewer_certificate {
-    cloudfront_default_certificate = local.use_custom_domain ? false : true
-    acm_certificate_arn            = local.use_custom_domain ? aws_acm_certificate_validation.cert_validation[0].certificate_arn : null
+    cloudfront_default_certificate = local.has_custom_domain ? false : true
+    acm_certificate_arn            = local.has_custom_domain ? aws_acm_certificate_validation.cert_validation[0].certificate_arn : null
     minimum_protocol_version       = "TLSv1.2_2021"
     ssl_support_method             = "sni-only"
   }
@@ -88,4 +88,8 @@ resource "aws_route53_record" "cloudfront_cname" {
   type    = "CNAME"
   ttl     = 60
   zone_id = data.aws_route53_zone.web_resume_app[0].zone_id
+}
+
+output "website_url" {
+  value = local.has_custom_domain ? local.app_domain_name : aws_cloudfront_distribution.web_resume_app.domain_name
 }
