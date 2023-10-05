@@ -7,14 +7,14 @@ data "aws_route53_zone" "web_resume_app" {
   private_zone = false
 }
 
-resource "aws_acm_certificate" "web_resume_app" {
+resource "aws_acm_certificate" "cert" {
   domain_name       = var.app_domain_name
   validation_method = "DNS"
 }
 
-resource "aws_route53_record" "web_resume_app" {
+resource "aws_route53_record" "cert_cname" {
   for_each = {
-    for option in aws_acm_certificate.web_resume_app.domain_validation_options : option.domain_name => {
+    for option in aws_acm_certificate.cert.domain_validation_options : option.domain_name => {
       name   = option.resource_record_name
       record = option.resource_record_value
       type   = option.resource_record_type
@@ -29,8 +29,8 @@ resource "aws_route53_record" "web_resume_app" {
   zone_id         = data.aws_route53_zone.web_resume_app.zone_id
 }
 
-resource "aws_acm_certificate_validation" "web_resume_app" {
-  certificate_arn = aws_acm_certificate.web_resume_app.arn
+resource "aws_acm_certificate_validation" "cert_validation" {
+  certificate_arn = aws_acm_certificate.cert.arn
 }
 
 resource "aws_cloudfront_origin_access_identity" "web_resume_app" {
@@ -63,9 +63,17 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     }
   }
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate_validation.web_resume_app.certificate_arn
+    acm_certificate_arn      = aws_acm_certificate_validation.cert_validation.certificate_arn
     minimum_protocol_version = "TLSv1.2_2021"
-    ssl_support_method = "sni-only"
+    ssl_support_method       = "sni-only"
   }
   depends_on = [aws_s3_bucket.web_resume_app]
+}
+
+resource "aws_route53_record" "cloudfront_cname" {
+  name    = var.app_domain_name
+  type    = "CNAME"
+  ttl     = 60
+  records = [aws_cloudfront_distribution.web_resume_app.domain_name]
+  zone_id = data.aws_route53_zone.web_resume_app.zone_id
 }
