@@ -1,14 +1,15 @@
 locals {
+  app_domain_name            = "resume.${var.domain_name}"
   caching_disabled_policy_id = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
 }
 
 data "aws_route53_zone" "web_resume_app" {
-  name         = var.app_domain_name
+  name         = var.domain_name
   private_zone = false
 }
 
 resource "aws_acm_certificate" "cert" {
-  domain_name       = var.app_domain_name
+  domain_name       = local.app_domain_name
   validation_method = "DNS"
 }
 
@@ -46,7 +47,7 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     }
   }
   enabled             = true
-  aliases             = [var.app_domain_name]
+  aliases             = [local.app_domain_name]
   default_root_object = "${var.source_s3_prefix}/index.html"
   default_cache_behavior {
     cache_policy_id        = local.caching_disabled_policy_id
@@ -71,7 +72,7 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
 }
 
 resource "aws_route53_record" "cloudfront_cname" {
-  name    = var.app_domain_name
+  name    = local.app_domain_name
   type    = "CNAME"
   ttl     = 60
   records = [aws_cloudfront_distribution.web_resume_app.domain_name]

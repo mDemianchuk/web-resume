@@ -1,116 +1,125 @@
 {
-  "name": "Lorem Ipsum",
-  "title": "Lorem Ipsum Dolor",
+  "name": "Nick Demianchuk",
+  "title": "Software / DevOps Engineer",
   "contactOptions": [
     {
-      "text": "123-456-7890",
+      "text": "(872) 305 2846",
       "icon": "mdi-phone",
       "url": "tel:123-456-7890"
     },
     {
-      "text": "test@email.com",
-      "icon": "mdi-at"
+      "text": "jobs.mdemianchuk@gmail.com",
+      "icon": "mdi-at",
+      "url": "mailto:jobs.mdemianchuk@gmail.com"
     },
     {
-      "text": "github",
+      "text": "mdemianchuk",
       "icon": "mdi-github",
       "url": "https://github.com/"
-    },
-    {
-      "text": "linkedin",
-      "icon": "mdi-linkedin",
-      "url": "https://www.linkedin.com/"
     }
   ],
-  "summary": "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae. Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.",
+  "summary": "Certified software engineer with 4+ years of experience building modern cloud solutions following best DevOps practices.",
   "experienceList": [
     {
-      "title": "Lorem Ipsum",
-      "companyName": "Lorem Ipsum Dolor",
-      "dates": "MM/YY - MM/YY",
+      "title": "Senior Software Engineer - Platform & Infrastructure",
+      "companyName": "Panther Labs",
+      "dates": "March 2022 - August 2023",
       "duties": [
-        "Lorem ipsum dolor sit amet, no nam oblique veritus.",
-        "Commune scaevola imperdiet nec ut, sed euismod convenire principes at.",
-        "Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.",
-        "Lorem ipsum dolor sit amet, no nam oblique veritus."
+        "Developed an ephemeral deployment system that deploys the entire product on every pull request, allowing for a faster feedback loop and improved feature validation.",
+        "Built necessary AWS infrastructure to migrate a SaaS customer to their own account, which resulted in a 6-figure contract renewal.",
+        "Cost-optimized internal infrastructure by reusing encryption keys across staging deployments, reducing the projected annual spend by $40,000.",
+        "Migrated core IaC codebase from AWS CloudFormation to Pulumi, enabling infrastructure unit testing and reducing the product deployment time by 30%.",
+        "Automated a wide range of internal workflows, improving operational efficiency and developer productivity.",
+        "Participated in on-call rotations, troubleshooting production issues and assisting customers with engineering requests."
       ],
-      "footer": "Lorem ipsum dolor sit amet, no nam oblique veritus"
+      "footer": "Tech: Python, Golang, AWS, Terraform, CloudFormation, Pulumi, GitHub Actions, Docker, Bash, Lambda, ECS, IAM, KMS, SQS, SNS, S3, RDS, DynamoDB, CloudWatch, DataDog"
     },
     {
-      "title": "Lorem Ipsum",
-      "companyName": "Lorem Ipsum Dolor",
-      "dates": "MM/YY - MM/YY",
+      "title": "DevOps Engineer",
+      "companyName": "CCC Intelligent Solutions",
+      "dates": "December 2019 - March 2022",
       "duties": [
-        "Lorem ipsum dolor sit amet, no nam oblique veritus.",
-        "Commune scaevola imperdiet nec ut, sed euismod convenire principes at.",
-        "Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.",
-        "Lorem ipsum dolor sit amet, no nam oblique veritus."
+        "Built a serverless batch data pipeline that processes over 600,000 insurance claim files daily.",
+        "Developed a K8s-based solution for transferring terabytes of data between on-prem servers.",
+        "Created AWS ECS infrastructure to facilitate distributed training of machine learning models.",
+        "Created a library of CI/CD job templates for code linting, version control, automated testing, container image builds, and K8s deployments.",
+        "Refactored monolith web applications into loosely coupled microservices and microfrontends.",
+        "Improved the performance of an Airflow DAG management system by a factor of 4 through API payload pruning and backend pagination."
       ],
-      "footer": "Lorem ipsum dolor sit amet, no nam oblique veritus"
+      "footer": "Tech: Python, Flask, NGINX, JavaScript, TypeScript, Vue.js, MongoDB, GitLab CI, Docker, K8s, AWS, S3, ECS, Fargate, SQS, ECR, Grafana, Prometheus, Linux"
     },
     {
-      "title": "Lorem Ipsum",
-      "companyName": "Lorem Ipsum Dolor",
-      "dates": "MM/YY - MM/YY",
+      "title": "Graduate Teaching Assistant",
+      "companyName": "Loyola University Chicago",
+      "dates": "January 2019 - May 2020",
       "duties": [
-        "Lorem ipsum dolor sit amet, no nam oblique veritus.",
-        "Commune scaevola imperdiet nec ut, sed euismod convenire principes at.",
-        "Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.",
-        "Lorem ipsum dolor sit amet, no nam oblique veritus."
+        "Taught core Java concepts to 30-40 students per semester for COMP 413: Intermediate Object-Oriented Development.",
+        "Helped students design and build web applications for COMP 424: Client-Side Web Development.",
+        "Conducted one-on-one mock interviews and resume reviews for COMP 250: Scientific and Technical Communication.",
+        "Led study sessions of 5-10 students for COMP 180: Computing and Data Analysis for the Sciences."
       ],
-      "footer": "Lorem ipsum dolor sit amet, no nam oblique veritus"
+      "footer": "Tech: Java, Python, JavaScript, Node.js, HTML5, CSS3, Unit Testing, Maven, Gradle, Git"
     },
     {
-      "title": "Lorem Ipsum",
-      "companyName": "Lorem Ipsum Dolor",
-      "dates": "MM/YY - MM/YY",
+      "title": "Software Engineer (Internship)",
+      "companyName": "BMW of North America",
+      "dates": "June 2019 - August 2019",
       "duties": [
-        "Lorem ipsum dolor sit amet, no nam oblique veritus.",
-        "Commune scaevola imperdiet nec ut, sed euismod convenire principes at.",
-        "Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.",
-        "Lorem ipsum dolor sit amet, no nam oblique veritus."
+        "Developed a user data deletion microservice for the “My BWM” mobile app.",
+        "Implemented unit testing for existing APIs, bringing the product test coverage to 100%.",
+        "Optimized HTTP response times for existing APIs by leveraging asynchronous programming.",
+        "Performed peer code reviews, providing constructive feedback on code quality and readability.",
+        "Created CI/CD pipelines for containerized application deployments using Jenkins."
       ],
-      "footer": "Lorem ipsum dolor sit amet, no nam oblique veritus"
+      "footer": "Tech: C#, .NET, NUnit, Docker, Azure, Service Bus, Cosmos DB, Jenkins, Git"
     }
   ],
   "projectList": [
     {
-      "name": "Lorem Ipsum",
-      "description": "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae. Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at.",
-      "footer": "Lorem ipsum dolor sit amet, no nam oblique veritus.",
-      "url": "https://github.com/"
+      "name": "Web Resume Builder",
+      "description": "Web resume builder with seamless deployment to AWS CloudFront, backed by Terraform and GitHub Actions. A user can opt in for their own domain name and ACM certificate.",
+      "footer": "Tech: Vue.js, Terraform, GitHub Actions, CloudFront, S3, Route53, ACM",
+      "url": "https://github.com/mdemianchuk/web-resume"
     },
     {
-      "name": "Lorem Ipsum",
-      "description": "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae. Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at.",
-      "footer": "Lorem ipsum dolor sit amet, no nam oblique veritus.",
-      "url": "https://github.com/"
+      "name": "Crypto Profit Calulator",
+      "description": "Flask-based API for calculating crypto trading profits/losses. The application uses Coinbase API for fetching historical price data of 150+ cryptocurrencies. The local K8s cluster development and deployment is configured with Docker, minikube, and Skaffold.",
+      "footer": "Tech: Python, Flask, Docker, K8s",
+      "url": "https://github.com/mdemianchuk/crypto-profit-calculator"
+    },
+    {
+      "name": "CTA Bus and Train Tracker",
+      "description": "Multi-platform mobile application for the Chicago Transit Authority bus and train tracking. Users can get arrival times for any bus or train stop and conveniently access their favorite stops from the Favorite Stops tab.",
+      "footer": "Tech: TypeScript, Node.js, Docker, Travis CI",
+      "url": "https://github.com/mdemianchuk/cta-tracker"
     }
   ],
   "schoolList": [
     {
-      "name": "Lorem Ipsum",
-      "degree": "Lorem Ipsum Dolor",
-      "dates": "MM/YY - MM/YY",
+      "name": "Loyola University Chicago",
+      "degree": "M.S. in Computer Science",
+      "dates": "August 2018 - May 2020",
       "achievements": [
-        "Lorem ipsum dolor sit amet, no nam oblique veritus.",
-        "Commune scaevola imperdiet nec ut, sed euismod convenire principes at."
+        "Grace Murray Hopper Service and Leadership Award",
+        "Graduate Teaching Assistant Scholarship Award",
+        "GPA 4.0"
       ]
     },
     {
-      "name": "Lorem Ipsum",
-      "degree": "Lorem Ipsum Dolor",
-      "dates": "MM/YY - MM/YY",
-      "achievements": [
-        "Lorem ipsum dolor sit amet, no nam oblique veritus.",
-        "Commune scaevola imperdiet nec ut, sed euismod convenire principes at."
-      ]
+      "name": "Ternopil National Technical University",
+      "degree": "B.S. in Software Engineering",
+      "dates": "September 2014 - June 2018",
+      "achievements": ["Ivan Puluj Scholarship Award", "GPA 3.8"]
     }
   ],
   "certificationList": [
     {
-      "name": "Lorem Ipsum",
-      "url": "https://github.com/"
+      "name": "HashiCorp Certified: Terraform Associate (003)",
+      "url": "https://www.credly.com/badges/0832aa31-1bea-4fcc-b3b4-039c6ba41bde"
+    },
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "url": "https://www.credly.com/badges/4bf4bb1c-5f11-49b1-a3c4-717f30db05da"
     }
   ]
 }
