@@ -21,7 +21,7 @@ jobs:
       run: yarn install
   
     - name: Copy Resume Content
-      run: echo "${{ vars.RESUME_JSON }}" > src/assets/resume.json && cat src/assets/resume.json
+      run: echo "${{ vars.RESUME_JSON }}" > src/assets/resume.json
     
     - name: Build
       run: yarn build
