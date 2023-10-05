@@ -1,21 +1,27 @@
 locals {
-  app_domain_name            = "resume.${var.domain_name}"
   caching_disabled_policy_id = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
+  use_custom_domain          = var.domain_name != ""
+  app_domain_name            = "${var.subdomain_name}.${var.domain_name}"
+  domain_validation_options  = local.use_custom_domain ? aws_acm_certificate.cert[0].domain_validation_options : []
 }
 
 data "aws_route53_zone" "web_resume_app" {
+  count = local.use_custom_domain ? 1 : 0
+
   name         = var.domain_name
   private_zone = false
 }
 
 resource "aws_acm_certificate" "cert" {
+  count = local.use_custom_domain ? 1 : 0
+
   domain_name       = local.app_domain_name
   validation_method = "DNS"
 }
 
 resource "aws_route53_record" "cert_cname" {
   for_each = {
-    for option in aws_acm_certificate.cert.domain_validation_options : option.domain_name => {
+    for option in local.domain_validation_options : option.domain_name => {
       name   = option.resource_record_name
       record = option.resource_record_value
       type   = option.resource_record_type
@@ -27,11 +33,13 @@ resource "aws_route53_record" "cert_cname" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = data.aws_route53_zone.web_resume_app.zone_id
+  zone_id         = data.aws_route53_zone.web_resume_app[0].zone_id
 }
 
 resource "aws_acm_certificate_validation" "cert_validation" {
-  certificate_arn = aws_acm_certificate.cert.arn
+  count = local.use_custom_domain ? 1 : 0
+
+  certificate_arn = aws_acm_certificate.cert[0].arn
 }
 
 resource "aws_cloudfront_origin_access_identity" "web_resume_app" {
@@ -47,7 +55,7 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     }
   }
   enabled             = true
-  aliases             = [local.app_domain_name]
+  aliases             = local.use_custom_domain ? [local.app_domain_name] : []
   default_root_object = "${var.source_s3_prefix}/index.html"
   default_cache_behavior {
     cache_policy_id        = local.caching_disabled_policy_id
@@ -64,17 +72,20 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     }
   }
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate_validation.cert_validation.certificate_arn
-    minimum_protocol_version = "TLSv1.2_2021"
-    ssl_support_method       = "sni-only"
+    cloudfront_default_certificate = local.use_custom_domain ? false : true
+    acm_certificate_arn            = local.use_custom_domain ? aws_acm_certificate_validation.cert_validation[0].certificate_arn : null
+    minimum_protocol_version       = "TLSv1.2_2021"
+    ssl_support_method             = "sni-only"
   }
   depends_on = [aws_s3_bucket.web_resume_app]
 }
 
 resource "aws_route53_record" "cloudfront_cname" {
+  count = var.domain_name != "" ? 1 : 0
+
   name    = local.app_domain_name
+  records = [aws_cloudfront_distribution.web_resume_app.domain_name]
   type    = "CNAME"
   ttl     = 60
-  records = [aws_cloudfront_distribution.web_resume_app.domain_name]
-  zone_id = data.aws_route53_zone.web_resume_app.zone_id
+  zone_id = data.aws_route53_zone.web_resume_app[0].zone_id
 }

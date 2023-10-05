@@ -8,7 +8,13 @@ variable "deployment_role_arn" {
 }
 
 variable "domain_name" {
-  type = string
+  type    = string
+  default = ""
+}
+
+variable "subdomain_name" {
+  type    = string
+  default = "resume"
 }
 
 variable "source_bucket_name" {
