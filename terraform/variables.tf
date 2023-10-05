@@ -1,13 +1,13 @@
-variable "domain_name" {
-  type = string
-}
-
 variable "default_region" {
   type    = string
   default = "us-east-1"
 }
 
 variable "deployment_role_arn" {
+  type = string
+}
+
+variable "domain_name" {
   type = string
 }
 
