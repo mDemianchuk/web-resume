@@ -46,7 +46,7 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     }
   }
   enabled             = true
-  aliases             = [var.app_domain_name]
+#   aliases             = [var.app_domain_name]
   default_root_object = "${var.source_s3_prefix}/index.html"
   default_cache_behavior {
     cache_policy_id        = local.caching_disabled_policy_id
