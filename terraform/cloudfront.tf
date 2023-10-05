@@ -1,8 +1,3 @@
-locals {
-  one_hour_in_seconds = 60 * 60
-  one_day_in_seconds  = local.one_hour_in_seconds * 24
-}
-
 resource "aws_cloudfront_origin_access_identity" "web_resume_app" {
   comment = var.source_bucket_name
 }
