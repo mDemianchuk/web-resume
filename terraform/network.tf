@@ -63,7 +63,7 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     }
   }
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate_validation.web_resume_app.certificate_arn
+    acm_certificate_arn = aws_acm_certificate.web_resume_app.arn
   }
   depends_on = [aws_s3_bucket.web_resume_app]
 }
