@@ -64,6 +64,7 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
   }
   viewer_certificate {
     acm_certificate_arn = aws_acm_certificate_validation.web_resume_app.certificate_arn
+    minimum_protocol_version = "TLSv1.2_2021"
     ssl_support_method = "sni-only"
   }
   depends_on = [aws_s3_bucket.web_resume_app]
