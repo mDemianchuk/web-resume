@@ -3,7 +3,8 @@ locals {
 }
 
 data "aws_route53_zone" "web_resume_app" {
-  name = var.app_domain_name
+  name         = var.app_domain_name
+  private_zone = false
 }
 
 resource "aws_acm_certificate" "web_resume_app" {
