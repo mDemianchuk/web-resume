@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: yarn install
   
-    - name: create-json
+    - name: Copy Resume Contents
       uses: jsdaniell/create-json@v1.2.2
       with:
         name: src/assets/resume.json
