@@ -10,3 +10,8 @@ variable "deployment_role_arn" {
 variable "source_bucket_name" {
   type = string
 }
+
+variable "source_s3_prefix" {
+  type    = string
+  default = "web-resume"
+}
