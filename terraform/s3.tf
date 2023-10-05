@@ -6,14 +6,6 @@ resource "aws_s3_bucket" "web_resume_app" {
   bucket = var.source_bucket_name
 }
 
-resource "aws_s3_bucket_website_configuration" "web_resume_app" {
-  bucket = aws_s3_bucket.web_resume_app.id
-
-  index_document {
-    suffix = "index.html"
-  }
-}
-
 data "aws_iam_policy_document" "bucket_policy" {
   statement {
     actions   = ["s3:GetObject"]
@@ -48,15 +40,6 @@ resource "aws_s3_bucket_public_access_block" "web_resume_app" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-}
-
-resource "aws_s3_bucket_cors_configuration" "web_resume_app" {
-  bucket = aws_s3_bucket.web_resume_app.bucket
-
-  cors_rule {
-    allowed_methods = ["GET"]
-    allowed_origins = ["*"]
-  }
 }
 
 resource "aws_s3_object" "js" {
