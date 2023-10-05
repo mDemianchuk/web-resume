@@ -1,3 +1,7 @@
+variable "app_domain_name" {
+  type = string
+}
+
 variable "default_region" {
   type    = string
   default = "us-east-1"
