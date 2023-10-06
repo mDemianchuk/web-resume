@@ -19,8 +19,8 @@ export default {
       <v-col>
         <v-row no-gutters align="baseline" class="mb-4">
           <v-col cols="auto">
-            <h3 v-text="school.degree" class="colorText" />
-            <h4 v-text="school.name" />
+            <h3 v-text="school.degree" />
+            <h4 v-text="school.name" class="secondaryText" />
           </v-col>
           <v-spacer />
           <h4 v-text="school.dates" class="lightText" />

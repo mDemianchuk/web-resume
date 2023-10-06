@@ -28,7 +28,7 @@ export default {
           </v-col>
         </v-row>
         <p v-text="project.description" />
-        <p v-text="project.footer" class="font-italic" />
+        <p v-text="project.footer" class="font-weight-medium" />
       </v-col>
     </v-row>
   </ResumeSection>

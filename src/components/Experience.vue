@@ -38,24 +38,27 @@ export default {
           <h3 v-text="experience.dates" class="secondaryText" />
         </template>
         <div>
-          <v-row no-gutters align="baseline" class="mb-4">
+          <v-row
+            no-gutters
+            align="baseline"
+            :class="{ 'mb-4': !isNarrowViewpoint }"
+          >
             <v-col cols="auto">
-              <h3 v-text="experience.title" class="colorText" />
-              <h4 v-text="experience.companyName" />
+              <h3 v-text="experience.title" />
+              <h4 v-text="experience.companyName" class="secondaryText" />
             </v-col>
-            <v-spacer />
-            <h4
-              v-if="isNarrowViewpoint"
-              v-text="experience.dates"
-              class="lightText"
-            />
           </v-row>
+          <h4
+            v-if="isNarrowViewpoint"
+            v-text="experience.dates"
+            class="lightText mb-4"
+          />
           <p
             v-for="(duty, i) in experience.duties"
             :key="i"
             v-text="`${prefix} ${duty}`"
           />
-          <p v-text="experience.footer" class="font-italic" />
+          <p v-text="experience.footer" class="font-weight-medium" />
         </div>
       </v-timeline-item>
     </v-timeline>
