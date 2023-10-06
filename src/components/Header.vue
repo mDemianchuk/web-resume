@@ -20,10 +20,10 @@ export default {
 <template>
   <v-container class="text-center">
     <v-row justify="center" no-gutters>
-      <h1>{{ name }}</h1>
+      <h2 class="text-lowercase">{{ name }}</h2>
     </v-row>
     <v-row justify="center" class="colorText" no-gutters>
-      <h2>{{ title }}</h2>
+      <h2 class="text-lowercase">{{ title }}</h2>
     </v-row>
     <v-row justify="center">
       <v-col v-for="(item, i) in contactOptions" :key="i" cols="auto">

@@ -12,7 +12,7 @@ export default {
 <template>
   <v-container>
     <v-row no-gutters>
-      <h2>{{ title }}</h2>
+      <h2 class="colorText text-lowercase">{{ title }}</h2>
     </v-row>
     <slot />
   </v-container>
