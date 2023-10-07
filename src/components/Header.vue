@@ -1,11 +1,19 @@
 <script>
 export default {
   props: {
-    name: {
+    firstName: {
       type: String,
       default: '',
     },
-    title: {
+    lastName: {
+      type: String,
+      default: '',
+    },
+    middleName: {
+      type: String,
+      default: '',
+    },
+    summary: {
       type: String,
       default: '',
     },
@@ -20,14 +28,18 @@ export default {
 <template>
   <v-container class="text-center">
     <v-row justify="center" no-gutters>
-      <h2 class="text-lowercase">{{ name }}</h2>
+      <h1 class="text-lowercase">
+        {{ firstName }}
+        <span class="secondaryText">{{ `[${middleName}] ` }}</span>
+        <span class="accentText">{{ lastName }}</span>
+      </h1>
     </v-row>
-    <v-row justify="center" class="colorText" no-gutters>
-      <h2 class="text-lowercase">{{ title }}</h2>
+    <v-row justify="center" no-gutters class="mt-4">
+      <span>{{ summary }}</span>
     </v-row>
     <v-row justify="center">
       <v-col v-for="(item, i) in contactOptions" :key="i" cols="auto">
-        <a :href="item.url">
+        <a :href="item.url" class="secondaryText">
           <v-icon left class="headingText">{{ item.icon }}</v-icon>
           {{ item.text }}
         </a>

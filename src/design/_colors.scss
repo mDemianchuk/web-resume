@@ -3,7 +3,8 @@ $color-text: #393b3f;
 $color-heading-text: #232c3f;
 $color-secondary-text: #6b7177;
 $color-light-text: #8d9095;
-$color-color-text: #008060;
+$color-accent-text: #337744;
+$color-accent-secondary: rgba(0, 128, 96, 0.1);
 
 // LINKS
 $color-link-text: $color-secondary-text;
@@ -11,5 +12,5 @@ $color-active-link-text: $color-heading-text;
 $color-link-text-active: $color-text;
 
 // BUTTONS
-$color-button-bg: $color-color-text;
+$color-button-bg: $color-accent-text;
 $color-dark-button-bg: $color-heading-text;

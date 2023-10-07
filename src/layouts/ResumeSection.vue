@@ -11,8 +11,8 @@ export default {
 
 <template>
   <v-container>
-    <v-row no-gutters>
-      <h2 class="colorText text-lowercase">{{ title }}</h2>
+    <v-row no-gutters class="my-6">
+      <h2 class="accentText text-lowercase font-weight-bold">{{ title }}</h2>
     </v-row>
     <slot />
   </v-container>

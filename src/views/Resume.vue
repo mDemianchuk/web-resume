@@ -7,7 +7,6 @@ export default {
   },
   components: {
     Header: () => import('@components/Header'),
-    Summary: () => import('@components/Summary'),
     Experience: () => import('@components/Experience'),
     Education: () => import('@components/Education'),
     Certification: () => import('@components/Certification'),
@@ -22,16 +21,18 @@ export default {
 <template>
   <v-container>
     <Header
-      :name="resume.name"
-      :title="resume.title"
+      :firstName="resume.firstName"
+      :lastName="resume.lastName"
+      :middleName="resume.middleName"
+      :summary="resume.summary"
       :contact-options="resume.contactOptions"
     />
-    <Summary :text="resume.summary" />
-    <Experience :experience-list="resume.experienceList" />
-    <Education :school-list="resume.schoolList" />
-    <Certification :certification-list="resume.certificationList" />
-    <Projects :project-list="resume.projectList" />
+    <Experience :experience-list="resume.experienceList" class="pb-10" />
+    <Education :school-list="resume.schoolList" class="py-10" />
+    <Certification
+      :certification-list="resume.certificationList"
+      class="py-10"
+    />
+    <Projects :project-list="resume.projectList" class="py-10" />
   </v-container>
 </template>
-
-<style scoped></style>
