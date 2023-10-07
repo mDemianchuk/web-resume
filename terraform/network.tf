@@ -1,4 +1,5 @@
 locals {
+  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html#managed-cache-policy-caching-disabled
   caching_disabled_policy_id = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
   app_domain_name            = "${var.subdomain_name}.${var.domain_name}"
   has_custom_domain          = var.domain_name != ""
@@ -67,8 +68,8 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
   price_class = "PriceClass_100"
   restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
-      locations        = ["US"]
+      restriction_type = "none"
+      locations        = []
     }
   }
   viewer_certificate {
