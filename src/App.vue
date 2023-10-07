@@ -14,6 +14,7 @@ body,
   color: $color-text;
   background-color: #f6f6f7;
   font-family: $body-font-family;
+  font-size: $font-size;
 }
 
 .headingText {
@@ -28,8 +29,12 @@ body,
   color: $color-light-text;
 }
 
-.colorText {
-  color: $color-color-text;
+.accentText {
+  color: $color-accent-text;
+}
+
+.accentSecondary {
+  background-color: $color-accent-secondary !important;
 }
 
 a {
@@ -47,7 +52,7 @@ a {
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: $color-color-text;
+    background-color: $color-accent-text;
     opacity: 1;
     transition: opacity 300ms, transform 300ms;
     transform: translate3d(-100%, 0, 0);
@@ -75,5 +80,10 @@ h6 {
 h1,
 h2 {
   text-transform: uppercase;
+}
+
+ul {
+  list-style-position: outside;
+  list-style-type: '- ';
 }
 </style>

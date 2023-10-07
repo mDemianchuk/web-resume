@@ -18,13 +18,13 @@ export default {
       <v-col>
         <v-row no-gutters align="end" class="mb-4">
           <v-col cols="auto">
-            <h4>
+            <h3>
               <a v-if="certification.url" :href="certification.url">
                 <v-icon class="headingText" left small>mdi-link-variant</v-icon>
                 <span v-text="certification.name" class="headingText" />
               </a>
               <span v-else v-text="certification.name" class="headingText" />
-            </h4>
+            </h3>
           </v-col>
         </v-row>
       </v-col>
