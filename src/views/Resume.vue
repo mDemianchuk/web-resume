@@ -27,7 +27,7 @@ export default {
       :summary="resume.summary"
       :contact-options="resume.contactOptions"
     />
-    <Experience :experience-list="resume.experienceList" class="pb-10" />
+    <Experience :experience-list="resume.experienceList" class="py-10" />
     <Education :school-list="resume.schoolList" class="py-10" />
     <Certification
       :certification-list="resume.certificationList"
