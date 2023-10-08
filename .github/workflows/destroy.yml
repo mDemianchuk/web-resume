@@ -36,9 +36,9 @@ jobs:
       - name: Set Terraform Workspace
         run: |
           if [[ "${{ github.event.inputs.environment }}" == "staging" ]]; then
-            export TF_WORKSPACE="${{ secrets.TF_WORKSPACE_STAGING }}"
+            echo TF_WORKSPACE="${{ secrets.TF_WORKSPACE_STAGING }}" >> $GITHUB_ENV
           elif [[ "${{ github.event.inputs.environment }}" == "prod" ]]; then
-            export TF_WORKSPACE="${{ secrets.TF_WORKSPACE_PROD }}"
+            echo TF_WORKSPACE="${{ secrets.TF_WORKSPACE_PROD }}" >> $GITHUB_ENV
           fi
         shell: bash
 
