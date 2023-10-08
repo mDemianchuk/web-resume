@@ -61,6 +61,15 @@ jobs:
         cli_config_credentials_token: ${{ env.TF_API_TOKEN }}
         terraform_version: 1.5.0
 
+    - name: Set Terraform Workspace
+      run: |
+        if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+          echo "TF_WORKSPACE=${{ secrets.TF_WORKSPACE_STAGING }}" >> $GITHUB_ENV
+        elif [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+          echo "TF_WORKSPACE=${{ secrets.TF_WORKSPACE_PROD }}" >> $GITHUB_ENV
+        fi
+      shell: bash
+
     - name: Terraform Init
       run: terraform init
       working-directory: terraform
