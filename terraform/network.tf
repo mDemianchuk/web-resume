@@ -18,6 +18,7 @@ resource "aws_acm_certificate" "cert" {
 
   domain_name       = local.app_domain_name
   validation_method = "DNS"
+  region            = "us-east-1"
 }
 
 resource "aws_route53_record" "cert_cname" {
@@ -41,6 +42,7 @@ resource "aws_acm_certificate_validation" "cert_validation" {
   count = local.has_custom_domain ? 1 : 0
 
   certificate_arn = aws_acm_certificate.cert[0].arn
+  region          = "us-east-1"
 }
 
 resource "aws_cloudfront_origin_access_identity" "web_resume_app" {
