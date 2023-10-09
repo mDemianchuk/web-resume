@@ -20,10 +20,10 @@ Web resume builder with seamless deployment to AWS CloudFront, backed by Terrafo
 
 ## Deployment Strategy
 
-The backend infrastructure consists of two environments: `staging` and `prod`. The environment configurations are defined using Terraform workspaces, which are set by a GitHub Actions workflow:
-1. A `staging` deployment is triggered by opening a Pull Request against `main` branch.
+The backend infrastructure consists of two environments: `staging` and `prod`. The environment configurations are defined using Terraform workspaces, which are set by a [GitHub Actions workflow](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/deploy.yml):
+1. A `staging` deployment is triggered [by opening a Pull Request against `main` branch](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/deploy.yml#L71-L72).
 
-2. A `prod` deployment is triggered by pushing a commit into `main` branch, which occurs when a PR is merged.
+2. A `prod` deployment is triggered [by pushing a commit into `main` branch](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/deploy.yml#L73-L74), which occurs when a PR is merged.
 
 This strategy allows for testing of new features by deploying changes to `staging` environment prior to merging the code into `main` branch.
 
@@ -35,4 +35,4 @@ The backend infrastructure for the application consists of an S3 bucket to store
 
 ## Infrastructure Cleanup
 
-You can clean up the AWS infrastructure by using the Terraform Destroy workflow. When running, you can select an environment to destroy.
+You can clean up the AWS infrastructure by using the [Terraform Destroy workflow](https://github.com/mDemianchuk/web-resume/actions/workflows/destroy.yml). When running, you can [select an environment](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/destroy.yml#L5-L12) to destroy.
