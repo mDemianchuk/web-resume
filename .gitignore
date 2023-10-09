@@ -3,7 +3,6 @@
 **/dist
 **/my-resume.json
 
-
 # local env files
 .env
 .env.local
