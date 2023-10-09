@@ -32,7 +32,7 @@ This strategy allows for testing of new features by deploying changes to `stagin
 
 The backend infrastructure for the application consists of an S3 bucket for the source files and a CloudFront distribution. Additionally, users can opt for a custom domain and ACM certificate (a pre-existing hosted zone is required).
 
-< #TODO: add diagram >
+![AWS Infrastructure](infra_diagram.png)
 
 ## Infrastructure Cleanup
 
