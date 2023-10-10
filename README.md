@@ -22,9 +22,9 @@ Web resume builder with seamless deployment to AWS CloudFront, backed by Terrafo
 
 The backend infrastructure has two environments: `staging` and `prod`. To limit the cloud infrastructure to a single AWS account, the environments are represented by two AWS Regions:
 
-1. A `staging` ([`test-resume.nickdemianchuk.com`](https://test-resume.nickdemianchuk.com)) deployment is triggered [by opening a Pull Request against `main` branch](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/deploy.yml#L71-L72).
+1. A `staging` ([`test-resume.nickdemianchuk.com`](https://test-resume.nickdemianchuk.com) / `us-east-2`) deployment is triggered [by opening a Pull Request against `main` branch](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/deploy.yml#L71-L72).
 
-2. A `prod` ([`resume.nickdemianchuk.com`](https://resume.nickdemianchuk.com)) deployment is triggered [by pushing a commit into `main` branch](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/deploy.yml#L73-L74), which occurs when a PR is merged.
+2. A `prod` ([`resume.nickdemianchuk.com`](https://resume.nickdemianchuk.com) / `us-east-1`) deployment is triggered [by pushing a commit into `main` branch](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/deploy.yml#L73-L74), which occurs when a PR is merged.
 
 This strategy allows for testing of new features by deploying changes to `staging` environment prior to merging the code into `main`.
 
