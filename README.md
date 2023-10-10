@@ -20,7 +20,7 @@ Web resume builder with seamless deployment to AWS CloudFront, backed by Terrafo
 
 ## Deployment Strategy
 
-The backend infrastructure consists of two environments: `staging` and `prod`. To limit the cloud infrastructure to a single AWS account, the environments are represented by two AWS Regions:
+The backend infrastructure has two environments: `staging` and `prod`. To limit the cloud infrastructure to a single AWS account, the environments are represented by two AWS Regions:
 
 1. A `staging` ([`test-resume.nickdemianchuk.com`](https://test-resume.nickdemianchuk.com)) deployment is triggered [by opening a Pull Request against `main` branch](https://github.com/mDemianchuk/web-resume/blob/main/.github/workflows/deploy.yml#L71-L72).
 
