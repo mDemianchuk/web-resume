@@ -16,6 +16,21 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v40
+      files:
+        - {src, public}/**
+        - babel.config.js
+        - package.json
+        - yarn.lock
+
+    - name: List all changed files
+      run: |
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          echo $file
+        done
     
     - name: Setup Node.js
       uses: actions/setup-node@v3
