@@ -21,6 +21,7 @@ jobs:
       id: changed-files
       uses: tj-actions/changed-files@v40
       with:
+        since_last_remote_commit: true 
         files: |
           {src, public}/**
           babel.config.js
