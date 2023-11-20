@@ -5,7 +5,7 @@ variable "region" {
 }
 
 variable "deployment_role_arn" {
-  description = "IAM Role ARN used to deploy the infrastructure"
+  description = "IAM Role ARN used to deploy the Terraform infrastructure"
   type        = string
 }
 
