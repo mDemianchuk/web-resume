@@ -49,5 +49,5 @@ resource "aws_s3_object" "source_files" {
   key          = "${var.source_s3_prefix}/${each.key}"
   source       = "${local.source_base_path}/${each.key}"
   etag         = filemd5("${local.source_base_path}/${each.key}")
-  content_type = var.file_types[split(".", basename(each.key))[1]]
+  content_type = var.file_types[element(split(".", basename(each.key)), lenght(split(".", basename(each.key))) - 1)]
 }
