@@ -12,6 +12,8 @@ jobs:
   build:
     name: Build Application
     runs-on: ubuntu-latest
+    outputs:
+      has_source_chaged: ${{ steps.changed-files.outputs.any_changed }}
     
     steps:
     - name: Checkout code
@@ -28,12 +30,6 @@ jobs:
           package.json
           yarn.lock
 
-    - name: List all changed files
-      run: |
-        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo $file
-        done
-    
     - name: Setup Node.js
       if: steps.changed-files.outputs.any_changed == 'true'
       uses: actions/setup-node@v3
@@ -80,6 +76,7 @@ jobs:
         fetch-depth: 2
 
     - name: Download build artifacts
+      if: ${{ needs.build.outputs.has_source_changed == "true" }}
       uses: actions/download-artifact@v3
       with:
         name: build-artifacts
