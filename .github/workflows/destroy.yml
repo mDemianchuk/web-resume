@@ -11,17 +11,17 @@ on:
           - staging
           - prod
 
-env:
-  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
-  TF_CLOUD_HOSTNAME: "${{ secrets.TF_CLOUD_HOSTNAME }}"
-  TF_WORKSPACE_STAGING: "${{ secrets.TF_WORKSPACE_STAGING }}"
-  TF_WORKSPACE_PROD: "${{ secrets.TF_WORKSPACE_PROD }}"
-
 jobs:
   destroy:
     name: Destroy Terraform
     runs-on: ubuntu-latest
+    env:
+      TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+      TF_CLOUD_HOSTNAME: "${{ secrets.TF_CLOUD_HOSTNAME }}"
+      TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
+      TF_DATA_DIR: "terraform"
+      TF_WORKSPACE_PROD: "${{ secrets.TF_WORKSPACE_PROD }}"
+      TF_WORKSPACE_STAGING: "${{ secrets.TF_WORKSPACE_STAGING }}"
 
     steps:
       - name: Checkout code
@@ -44,8 +44,6 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: terraform
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
-        working-directory: terraform

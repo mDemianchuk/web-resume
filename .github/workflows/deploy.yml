@@ -46,8 +46,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-      TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
       TF_CLOUD_HOSTNAME: "${{ secrets.TF_CLOUD_HOSTNAME }}"
+      TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
+      TF_DATA_DIR: "terraform"
       TF_WORKSPACE: "${{ secrets.TF_WORKSPACE }}"
 
     steps:
@@ -79,7 +80,6 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      working-directory: terraform
 
     - name: Auto-format Terraform files
       if: github.event_name == 'pull_request'
@@ -97,12 +97,9 @@ jobs:
 
     - name: Terraform Validate
       run: terraform validate
-      working-directory: terraform
 
     - name: Terraform Plan
       run: terraform plan
-      working-directory: terraform
     
     - name: Terraform Apply
       run: terraform apply -auto-approve
-      working-directory: terraform
