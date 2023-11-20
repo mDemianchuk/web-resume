@@ -42,7 +42,7 @@ resource "aws_s3_bucket_public_access_block" "web_resume_app" {
   restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket_object" "files" {
+resource "aws_s3_object" "source_files" {
   for_each = fileset(local.source_base_path, "**/*")
 
   bucket       = aws_s3_bucket.web_resume_app.id
