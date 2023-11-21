@@ -72,8 +72,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
 
     - name: Download build artifacts
       if: env.HAS_SOURCE_CHANGED == 'true'
