@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  build-web-app:
-    name: Build Web App
+  build:
+    name: Build Application
     runs-on: ubuntu-latest
     outputs:
       has_source_chaged: ${{ steps.changed-files.outputs.any_changed }}
@@ -59,11 +59,11 @@ jobs:
         path: dist
 
   validate-and-deploy:
-    needs: build-web-app
+    needs: build
     name: Validate and Deploy Terraform
     runs-on: ubuntu-latest
     env:
-      HAS_SOURCE_CHANGED: "${{ needs.build-web-app.outputs.has_source_changed }}"
+      HAS_SOURCE_CHANGED: "${{ needs.build.outputs.has_source_changed }}"
       TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
       TF_CLI_OPTIONS: "-target=module.storage -target=module.network"
       TF_CLOUD_HOSTNAME: "${{ secrets.TF_CLOUD_HOSTNAME }}"
@@ -123,7 +123,6 @@ jobs:
         if [[ -n "${{ env.HAS_SOURCE_CHANGED }}" == "true" ]]; then
           echo "TF_CLI_OPTIONS=${{ env.TF_CLI_OPTIONS }} -target=module.source_uploader" >> $GITHUB_ENV
         fi
-      shell: bash
 
     - name: Terraform Plan
       run: terraform plan ${{ env.TF_CLI_OPTIONS }}
