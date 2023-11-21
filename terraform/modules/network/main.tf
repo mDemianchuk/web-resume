@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source                = "hashicorp/aws"
+      configuration_aliases = [aws, aws.us_east_1]
+    }
+  }
+}
+
 locals {
   # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html#managed-cache-policy-caching-disabled
   caching_disabled_policy_id = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
@@ -6,7 +15,7 @@ locals {
   domain_validation_options  = local.has_custom_domain ? aws_acm_certificate.cert[0].domain_validation_options : []
 }
 
-data "aws_route53_zone" "web_resume_app" {
+data "aws_route53_zone" "domain" {
   count = local.has_custom_domain ? 1 : 0
 
   name         = var.domain_name
@@ -35,7 +44,7 @@ resource "aws_route53_record" "cert_cname" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = data.aws_route53_zone.web_resume_app[0].zone_id
+  zone_id         = data.aws_route53_zone.domain[0].zone_id
 }
 
 resource "aws_acm_certificate_validation" "cert_validation" {
@@ -45,26 +54,26 @@ resource "aws_acm_certificate_validation" "cert_validation" {
   certificate_arn = aws_acm_certificate.cert[0].arn
 }
 
-resource "aws_cloudfront_origin_access_identity" "web_resume_app" {
+resource "aws_cloudfront_origin_access_identity" "oai" {
   comment = var.source_bucket_name
 }
 
-resource "aws_cloudfront_distribution" "web_resume_app" {
+resource "aws_cloudfront_distribution" "web_app" {
   origin {
-    domain_name = aws_s3_bucket.web_resume_app.bucket_regional_domain_name
-    origin_id   = aws_s3_bucket.web_resume_app.id
+    origin_id   = var.source_bucket_name
+    domain_name = var.source_bucket_regional_domain_name
     s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.web_resume_app.cloudfront_access_identity_path
+      origin_access_identity = aws_cloudfront_origin_access_identity.oai.cloudfront_access_identity_path
     }
   }
   enabled             = true
   aliases             = local.has_custom_domain ? [local.app_domain_name] : []
-  default_root_object = "${var.source_s3_prefix}/index.html"
+  default_root_object = "${var.source_bucket_prefix}/index.html"
   default_cache_behavior {
     cache_policy_id        = local.caching_disabled_policy_id
     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
     cached_methods         = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id       = aws_s3_bucket.web_resume_app.id
+    target_origin_id       = var.source_bucket_name
     viewer_protocol_policy = "redirect-to-https"
   }
   price_class = "PriceClass_100"
@@ -80,19 +89,14 @@ resource "aws_cloudfront_distribution" "web_resume_app" {
     minimum_protocol_version       = "TLSv1.2_2021"
     ssl_support_method             = "sni-only"
   }
-  depends_on = [aws_s3_bucket.web_resume_app]
 }
 
 resource "aws_route53_record" "cloudfront_cname" {
   count = var.domain_name != "" ? 1 : 0
 
   name    = local.app_domain_name
-  records = [aws_cloudfront_distribution.web_resume_app.domain_name]
+  records = [aws_cloudfront_distribution.web_app.domain_name]
   type    = "CNAME"
   ttl     = 60
-  zone_id = data.aws_route53_zone.web_resume_app[0].zone_id
-}
-
-output "website_url" {
-  value = local.has_custom_domain ? local.app_domain_name : aws_cloudfront_distribution.web_resume_app.domain_name
+  zone_id = data.aws_route53_zone.domain[0].zone_id
 }
