@@ -90,9 +90,9 @@ resource "aws_route53_record" "cloudfront_cname" {
   records = [aws_cloudfront_distribution.web_resume_app.domain_name]
   type    = "CNAME"
   ttl     = 60
-   zone_id = data.aws_route53_zone.web_resume_app[0].zone_id
+  zone_id = data.aws_route53_zone.web_resume_app[0].zone_id
 }
 
 output "website_url" {
-   value = local.has_custom_domain ? local.app_domain_name : aws_cloudfront_distribution.web_resume_app.domain_name
+  value = local.has_custom_domain ? local.app_domain_name : aws_cloudfront_distribution.web_resume_app.domain_name
 }
