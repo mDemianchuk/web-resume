@@ -34,7 +34,7 @@ variable "source_s3_prefix" {
 
 variable "source_path" {
   type        = string
-  description = "Source path to the build artifacts, relative to the root module"
+   description = "Source path to the build artifacts, relative to the root module"
   default     = "dist"
 }
 
