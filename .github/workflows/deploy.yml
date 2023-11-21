@@ -93,8 +93,6 @@ jobs:
       shell: bash
       working-directory: terraform
 
-    - name: 
-
     - name: Terraform Validate
       run: terraform validate
       working-directory: terraform
