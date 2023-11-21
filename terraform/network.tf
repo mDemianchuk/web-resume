@@ -94,5 +94,5 @@ resource "aws_route53_record" "cloudfront_cname" {
 }
 
 output "website_url" {
-   value = local.has_custom_domain ? local.app_domain_name : aws_cloudfront_distribution.web_resume_app.domain_name
+  value = local.has_custom_domain ? local.app_domain_name : aws_cloudfront_distribution.web_resume_app.domain_name
 }
