@@ -88,7 +88,8 @@ jobs:
         if [[ -n "$(git diff --exit-code *.tf)" ]]; then
           git config --global user.name "${{ vars.GIT_BOT_NAME }}"
           git config --global user.email "${{ vars.GIT_BOT_EMAIL }}"
-          git commit -am "Auto-format Terraform files"
+          git add *.tf
+          git commit -m "Auto-format Terraform files"
           git push origin HEAD:$GITHUB_HEAD_REF
         fi
       shell: bash
