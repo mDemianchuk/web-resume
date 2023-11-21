@@ -79,6 +79,22 @@ jobs:
       run: terraform init
       working-directory: terraform
 
+    - name: Auto-format Terraform files
+      if: github.event_name == "pull_request"
+      run: |
+        terraform fmt -recursive
+        has_tf_changes=$(git diff --exit-code "*/**.tf")
+        if [ -n "$has_tf_changes" ]; then
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git commit -am "Auto-format Terraform files"
+          git push origin HEAD:$GITHUB_REF
+        fi
+      shell: bash
+      working-directory: terraform
+
+    - name: 
+
     - name: Terraform Validate
       run: terraform validate
       working-directory: terraform
