@@ -118,10 +118,20 @@ jobs:
       run: terraform validate
       working-directory: terraform
 
-    - name: Terraform Plan
-      run: terraform plan
+    - name: Terraform Plan - Source Uploader
+      if: needs.build.outputs.has_source_changed == 'true'
+      run: terraform plan -target="module.source_uploader"
+      working-directory: terraform
+
+    - name: Terraform Apply - Source Uploader
+      if: needs.build.outputs.has_source_changed == 'true'
+      run: terraform apply -auto-approve -target="module.source_uploader"
+      working-directory: terraform   
+
+    - name: Terraform Plan - Base Infra
+      run: terraform plan -target="module.storage" -target="module.network"
       working-directory: terraform
     
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
+    - name: Terraform Apply - Base Infra
+      run: terraform apply -auto-approve -target="module.storage" -target="module.network"
       working-directory: terraform
