@@ -37,15 +37,3 @@ variable "source_path" {
   description = "Source path to the build artifacts, relative to the root module"
   default     = "dist"
 }
-
-variable "file_types" {
-  type        = map(string)
-  description = "Mapping of file types to their respective content types"
-  default = {
-    js   = "text/javascript"
-    css  = "text/css"
-    map  = "application/json"
-    html = "text/html"
-    ico  = "image/x-icon"
-  }
-}

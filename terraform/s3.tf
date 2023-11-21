@@ -1,6 +1,4 @@
-locals {
-  source_base_path = "${path.root}/${var.source_path}"
-}
+
 
 resource "aws_s3_bucket" "web_resume_app" {
   bucket = var.source_bucket_name
@@ -42,12 +40,10 @@ resource "aws_s3_bucket_public_access_block" "web_resume_app" {
   restrict_public_buckets = true
 }
 
-resource "aws_s3_object" "source_files" {
-  for_each = fileset(local.source_base_path, "**/*")
+module "source_uploader" {
+  source = "./modules/source_uploader"
 
-  bucket       = aws_s3_bucket.web_resume_app.id
-  key          = "${var.source_s3_prefix}/${each.key}"
-  source       = "${local.source_base_path}/${each.key}"
-  etag         = filemd5("${local.source_base_path}/${each.key}")
-  content_type = var.file_types[element(split(".", basename(each.key)), length(split(".", basename(each.key))) - 1)]
+  s3_bucket_name = var.source_bucket_name
+  s3_prefix      = var.source_s3_prefix
+  upload_dir     = "${path.root}/${var.source_path}"
 }
