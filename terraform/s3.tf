@@ -1,5 +1,5 @@
 locals {
-  source_base_path = "${path.root}/dist"
+  source_base_path = "${path.root}/${var.source_path}"
 }
 
 resource "aws_s3_bucket" "web_resume_app" {
