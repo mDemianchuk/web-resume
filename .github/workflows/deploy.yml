@@ -53,6 +53,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
 
     - name: Download build artifacts
       uses: actions/download-artifact@v3
@@ -77,6 +79,19 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
+      working-directory: terraform
+
+    - name: Auto-format Terraform files
+      if: github.event_name == 'pull_request'
+      run: |
+        terraform fmt -recursive
+        if [[ -n "$(git diff --exit-code *.tf)" ]]; then
+          git config --global user.name "${{ vars.GIT_BOT_NAME }}"
+          git config --global user.email "${{ vars.GIT_BOT_EMAIL }}"
+          git commit -am "Auto-format Terraform files"
+          git push origin HEAD:$GITHUB_HEAD_REF
+        fi
+      shell: bash
       working-directory: terraform
 
     - name: Terraform Validate
