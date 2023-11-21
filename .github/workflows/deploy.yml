@@ -80,7 +80,7 @@ jobs:
       working-directory: terraform
 
     - name: Auto-format Terraform files
-      if: ${{ github.event_name == "pull_request" }}
+      if: github.event_name == 'pull_request'
       run: |
         terraform fmt -recursive
         has_tf_changes=$(git diff --exit-code "*/**.tf")
