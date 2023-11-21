@@ -31,7 +31,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ env.TF_API_TOKEN }}
-          terraform_version: 1.5.0
+          terraform_version: ${{ vars.TF_VERSION }}
 
       - name: Set Terraform Workspace
         run: |
