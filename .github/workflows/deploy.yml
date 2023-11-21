@@ -18,14 +18,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.sha || github.event.push.ref }}
 
     - name: Get changed source files
       id: changed-files
       uses: tj-actions/changed-files@v40
-      with:
-        since_last_remote_commit: true 
+      with: 
         files: |
           {src, public}/**
           babel.config.js
