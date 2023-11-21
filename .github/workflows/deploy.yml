@@ -75,7 +75,7 @@ jobs:
         fetch-depth: 2
 
     - name: Download build artifacts
-      if: needs.build.outputs.has_source_changed == "true"
+      if: needs.build.outputs.has_source_changed == 'true'
       uses: actions/download-artifact@v3
       with:
         name: build-artifacts
