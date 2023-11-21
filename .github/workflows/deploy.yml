@@ -13,7 +13,7 @@ jobs:
     name: Build Application
     runs-on: ubuntu-latest
     outputs:
-      has_source_chaged: ${{ steps.changed-files.outputs.any_changed }}
+      has_source_changed: ${{ steps.changed-files.outputs.any_changed }}
     
     steps:
     - name: Checkout code
@@ -123,6 +123,7 @@ jobs:
         if [[ "${{ env.HAS_SOURCE_CHANGED }}" == "true" ]]; then
           echo "TF_CLI_OPTIONS=${{ env.TF_CLI_OPTIONS }} -target=module.source_uploader" >> $GITHUB_ENV
         fi
+        echo Terraform CLI options: ${{ env.TF_CLI_OPTIONS }}
 
     - name: Terraform Plan
       run: terraform plan ${{ env.TF_CLI_OPTIONS }}
