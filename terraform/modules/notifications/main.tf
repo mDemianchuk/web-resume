@@ -13,7 +13,7 @@ resource "aws_sns_topic_subscription" "email_subscription" {
 resource "aws_cloudwatch_metric_alarm" "web_app_errors" {
   alarm_name          = var.alarm_name
   alarm_description   = var.alarm_description
-  alarm_actions       = [aws_sns_topic.web_app_errors]
+  alarm_actions       = [aws_sns_topic.web_app_errors.arn]
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "TotalErrorRate"
