@@ -15,6 +15,12 @@ variable "domain_name" {
   default     = ""
 }
 
+variable "email_subscribers" {
+  type        = list(string)
+  description = "A list of emails to notify about CloudFront errors"
+  default     = []
+}
+
 variable "subdomain_name" {
   type        = string
   description = "Subdomain name for the web app (only applicable when domain_name is set)"
