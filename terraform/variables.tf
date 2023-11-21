@@ -16,7 +16,7 @@ variable "domain_name" {
 }
 
 variable "email_subscribers" {
-  type        = list(string)
+  type        = set(string)
   description = "A list of emails to notify about CloudFront errors"
   default     = []
 }
