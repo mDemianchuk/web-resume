@@ -40,7 +40,6 @@ jobs:
           elif [[ "${{ github.event.inputs.environment }}" == "prod" ]]; then
             echo TF_WORKSPACE="${{ secrets.TF_WORKSPACE_PROD }}" >> $GITHUB_ENV
           fi
-        shell: bash
 
       - name: Terraform Init
         run: terraform init

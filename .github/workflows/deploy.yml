@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build Application
+  build-web-app:
+    name: Build Web App
     runs-on: ubuntu-latest
     outputs:
       has_source_chaged: ${{ steps.changed-files.outputs.any_changed }}
@@ -59,13 +59,14 @@ jobs:
         path: dist
 
   validate-and-deploy:
-    needs: build
+    needs: build-web-app
     name: Validate and Deploy Terraform
     runs-on: ubuntu-latest
     env:
       TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-      TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
+      TF_CLI_OPTIONS: "-target=module.storage -target=module.network"
       TF_CLOUD_HOSTNAME: "${{ secrets.TF_CLOUD_HOSTNAME }}"
+      TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
       TF_WORKSPACE: "${{ secrets.TF_WORKSPACE }}"
 
     steps:
@@ -75,7 +76,7 @@ jobs:
         fetch-depth: 2
 
     - name: Download build artifacts
-      if: needs.build.outputs.has_source_changed == 'true'
+      if: needs.build-web-app.outputs.has_source_changed == 'true'
       uses: actions/download-artifact@v3
       with:
         name: build-artifacts
@@ -94,7 +95,6 @@ jobs:
         elif [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
           echo "TF_WORKSPACE=${{ secrets.TF_WORKSPACE_PROD }}" >> $GITHUB_ENV
         fi
-      shell: bash
 
     - name: Terraform Init
       run: terraform init
@@ -111,27 +111,22 @@ jobs:
           git commit -m "Auto-format Terraform files"
           git push origin HEAD:$GITHUB_HEAD_REF
         fi
-      shell: bash
       working-directory: terraform
 
     - name: Terraform Validate
       run: terraform validate
       working-directory: terraform
 
-    - name: Terraform Plan - Source Uploader
-      if: needs.build.outputs.has_source_changed == 'true'
-      run: terraform plan -target="module.source_uploader"
+    - name: Configure Terraform Deployment Targets
+      run: |
+        if [[ -n "${{ needs.build-web-app.outputs.has_source_changed }}" == "true" ]]; then
+          echo "TF_CLI_OPTIONS=${{ env.TF_CLI_OPTIONS }} -target=module.source_uploader" >> $GITHUB_ENV
+        fi
+
+    - name: Terraform Plan
+      run: terraform plan ${{ env.TF_CLI_OPTIONS }}
       working-directory: terraform
 
-    - name: Terraform Apply - Source Uploader
-      if: needs.build.outputs.has_source_changed == 'true'
-      run: terraform apply -auto-approve -target="module.source_uploader"
-      working-directory: terraform   
-
-    - name: Terraform Plan - Base Infra
-      run: terraform plan -target="module.storage" -target="module.network"
-      working-directory: terraform
-    
-    - name: Terraform Apply - Base Infra
-      run: terraform apply -auto-approve -target="module.storage" -target="module.network"
+    - name: Terraform Apply
+      run: terraform apply -auto-approve ${{ env.TF_CLI_OPTIONS }}
       working-directory: terraform
