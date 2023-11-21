@@ -22,8 +22,7 @@ jobs:
     - name: Get changed source files
       id: changed-files
       uses: tj-actions/changed-files@v40
-      with:
-        since_last_remote_commit: true 
+      with: 
         files: |
           {src, public}/**
           babel.config.js
@@ -73,8 +72,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        fetch-depth: 2
 
     - name: Download build artifacts
       if: env.HAS_SOURCE_CHANGED == 'true'
