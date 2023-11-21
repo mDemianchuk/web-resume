@@ -123,6 +123,7 @@ jobs:
         if [[ -n "${{ env.HAS_SOURCE_CHANGED }}" == "true" ]]; then
           echo "TF_CLI_OPTIONS=${{ env.TF_CLI_OPTIONS }} -target=module.source_uploader" >> $GITHUB_ENV
         fi
+      shell: bash
 
     - name: Terraform Plan
       run: terraform plan ${{ env.TF_CLI_OPTIONS }}
