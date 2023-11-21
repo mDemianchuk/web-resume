@@ -83,7 +83,7 @@ jobs:
       if: github.event_name == 'pull_request'
       run: |
         terraform fmt -recursive
-        if [[ -n "$(git diff --exit-code */**.tf)" ]]; then
+        if [[ -n "$(git diff --exit-code *.tf)" ]]; then
           git config --global user.name "${{ vars.GIT_BOT_NAME }}"
           git config --global user.email "${{ vars.GIT_BOT_EMAIL }}"
           git commit -am "Auto-format Terraform files"
