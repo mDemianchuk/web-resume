@@ -87,7 +87,7 @@ jobs:
           git config --global user.name "${{ vars.GIT_BOT_NAME }}"
           git config --global user.email "${{ vars.GIT_BOT_EMAIL }}"
           git commit -am "Auto-format Terraform files"
-          git push origin HEAD:$GITHUB_REF
+          git push origin HEAD:$GITHUB_HEAD_REF
         fi
       shell: bash
       working-directory: terraform
