@@ -65,7 +65,7 @@ jobs:
     env:
       HAS_SOURCE_CHANGED: "${{ needs.build.outputs.has_source_changed }}"
       TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-      TF_CLI_OPTIONS: "-target=module.storage -target=module.network"
+      TF_CLI_OPTIONS: "-target=module.storage -target=module.network -target=module.notifications"
       TF_CLOUD_HOSTNAME: "${{ secrets.TF_CLOUD_HOSTNAME }}"
       TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
       TF_WORKSPACE: "${{ secrets.TF_WORKSPACE }}"

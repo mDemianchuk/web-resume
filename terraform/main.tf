@@ -46,6 +46,13 @@ module "network" {
   source_bucket_regional_domain_name = module.storage.source_bucket_regional_domain_name
 }
 
+module "notifications" {
+  source = "./modules/notifications"
+
+  cloudfront_distribution_id = module.network.cloudfront_distribution_id
+  email_subscribers          = var.email_subscribers
+}
+
 module "source_uploader" {
   source = "./modules/source_uploader"
 
