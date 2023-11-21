@@ -14,4 +14,3 @@ provider "aws" {
     role_arn = var.deployment_role_arn
   }
 }
-

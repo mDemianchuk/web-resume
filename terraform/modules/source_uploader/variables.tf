@@ -10,12 +10,12 @@ variable "file_types" {
   }
 }
 
-variable "s3_bucket_name" {
+variable "source_bucket_name" {
   type        = string
   description = "S3 Bucket name for file uploads"
 }
 
-variable "s3_prefix" {
+variable "source_bucket_prefix" {
   type        = string
   description = "S3 Bucket prefix (i.e. parent directory)"
 }
