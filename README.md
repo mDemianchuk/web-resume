@@ -1,6 +1,6 @@
 ## Description
 
-Web resume builder with seamless deployment to AWS CloudFront, backed by Terraform. Users can opt in for their own domain name and ACM certificate. Additionally, users can choose to be notified when application errors occur. The CI/CD pipeline for multi-environment deployment is implemented using GitHub Actions and Terraform Workspaces.
+Web resume builder with seamless deployment to AWS CloudFront, backed by Terraform. Users can opt-in for their own domain name and ACM certificate. Additionally, users can choose to be notified when application errors occur. The CI/CD pipeline for multi-environment deployment is implemented using GitHub Actions and Terraform Workspaces.
 
 ## Application Requirements
 
